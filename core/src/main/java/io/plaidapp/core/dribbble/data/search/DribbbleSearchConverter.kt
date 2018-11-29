@@ -77,7 +77,7 @@ object DribbbleSearchConverter : Converter<ResponseBody, List<Shot>> {
             null
         }
         // in case the shot doesn't have any likes, the tag is missing completely
-        val likesCount = if (element.select("li.fav").size != 0) {
+        val likesCount = if (element.select("li.fav").first()?.child(0).text().toInt() ?: 0
             element.select("li.fav").first().child(0).text().toInt()
         } else {
             0
